@@ -1,0 +1,5 @@
+    2  git clone https://github.com/amitvashisttech/terraform-voda-20200217.git
+   13  apt-get update ; apt-get install jq unzip wget -y 
+   15  ./terrafrom.sh 
+   16  source ~/.bashrc
+   18  terraform --version
