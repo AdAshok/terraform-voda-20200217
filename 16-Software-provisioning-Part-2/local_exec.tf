@@ -22,13 +22,6 @@ resource "aws_instance" "backend" {
   }
 }
 
-#resource "null_resource" "ansible-pre-tasks" {
-#  provisioner "local-exec" {
-#    command = "ansible-playbook -e ssh-key=${var.pvt_key} -i '${aws_instance.backend.public_ip},' ./ansible/pre-task.yml -v"
-#  }
-#
-#  depends_on = ["aws_instance.backend"]
-#}
 
 resource "null_resource" "ansible-main" {
   provisioner "local-exec" {
