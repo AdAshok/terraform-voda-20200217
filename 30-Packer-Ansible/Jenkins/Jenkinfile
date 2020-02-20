@@ -1,0 +1,24 @@
+node {
+    
+stage('Git CheckOut') {    
+git url: 'https://github.com/amitvashisttech/terraform-voda-20200217.git'
+}
+
+
+stage('Deploy to packer') {
+def project_path_1 = "30-Packer-Ansible/Jenkins/packer"
+dir(project_path_1) {    
+sh label: 'terraform', script: 'ls -la; pwd; packer build -var-file=vars.json template.json'
+}   
+}
+    
+stage('Deploy to terraform.') {
+def project_path_1 = "30-Packer-Ansible/Jenkins/terraform"
+dir(project_path_1) {    
+sh label: 'terraform', script: '/bin/terraform  init'
+sh label: 'terraform', script: '/bin/terraform  apply -input=false -auto-approve'
+}   
+}   
+}    
+    
+
